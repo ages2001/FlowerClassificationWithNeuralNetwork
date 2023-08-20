@@ -29,6 +29,12 @@
 
         public static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                Console.WriteLine("File name is missing!\nExample: FlowerClassification.exe iris.data");
+                Environment.Exit(1);
+            }
+
             int[] epochValues = { 20, 50, 100 };
             double[] lambdaValues = { 0.005, 0.01, 0.025 };
 
@@ -45,7 +51,7 @@
                         Neuron N3 = new Neuron("Iris-virginica");
                         NeuralNetwork network = new NeuralNetwork(N1, N2, N3);
 
-                        network.train(lambdaValues[j], epochValues[i]);
+                        network.train(args[0], lambdaValues[j], epochValues[i]);
                         accuracyValues[i, j] = network.findAccuracyValue();
                     }
                 }

@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Collections.Generic;
-using System.Globalization;
 
 namespace NeuralNetwork
 {
@@ -56,16 +55,16 @@ namespace NeuralNetwork
             return accuracyValue;
         }
 
-        public void train(double lambda, int epoch)
+        public void train(string fileName, double lambda, int epoch)
         {
             try
             {
-                Dataset = File.ReadAllLines("iris.data");
+                Dataset = File.ReadAllLines(fileName);
             }
             catch (IOException e)
             {
-                Console.WriteLine("File not found or file error!\n");
-                return;
+                Console.WriteLine("File not found or file error!");
+                Environment.Exit(1);
             }
 
             for (int i = 0; i < epoch; i++)
